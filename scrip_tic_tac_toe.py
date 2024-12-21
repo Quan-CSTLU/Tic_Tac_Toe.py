@@ -1,17 +1,13 @@
 import math
-
-# Constants
 X = "X"
 O = "O"
 EMPTY = None
-
-# Initialize the board
-def initial_state():
+def board_status():
     return [[EMPTY, EMPTY, EMPTY],
             [EMPTY, EMPTY, EMPTY],
             [EMPTY, EMPTY, EMPTY]]
 
-# Check for a winner
+# Check winner
 def winner(board):
     for row in board:
         if row[0] == row[1] == row[2] and row[0] is not None:
@@ -25,7 +21,7 @@ def winner(board):
         return board[0][2]
     return None
 
-# Check if the game is over
+# Kiểm tra trạng thái game đã kết thúc chưa
 def terminal(board):
     if winner(board) is not None:
         return True
@@ -34,7 +30,7 @@ def terminal(board):
             return False
     return True
 
-# Evaluate the board
+# hàm điểm thưởng nếu X wi thì max=1, O win min = -1, draw thì =0
 def utility(board):
     win = winner(board)
     if win == X:
@@ -44,7 +40,7 @@ def utility(board):
     else:
         return 0
 
-# Minimax algorithm with Alpha-Beta pruning
+#minimax + anpal beta
 def minimax(board, is_maximizing, alpha, beta):
     if terminal(board):
         return utility(board)
@@ -76,7 +72,7 @@ def minimax(board, is_maximizing, alpha, beta):
                         break
         return min_eval
 
-# Find the best move
+#Tìm nước đi tốt nhất
 def best_move(board):
     best_val = -1
     move = None
@@ -91,9 +87,9 @@ def best_move(board):
                     move = (row, col)
     return move
 
-# Example usage
-board = initial_state()
-print("Initial Board:")
+#main
+board = board_status()
+print("Board status:")
 for row in board:
     print(row)
 move = best_move(board)
