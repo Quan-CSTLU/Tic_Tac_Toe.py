@@ -9,7 +9,7 @@ EMPTY = None
 def initial_state():
     return [[EMPTY, EMPTY, EMPTY],
             [EMPTY, EMPTY, EMPTY],
-            [X, X, O]]
+            [EMPTY, EMPTY, EMPTY]]
 
 # Check for a winner
 def winner(board):
